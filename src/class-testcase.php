@@ -209,13 +209,14 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 	 * @throws \RuntimeException    The attribute could not be found in the object.
 	 */
 	protected function get_value( $object, $property_name ) {
-
+		$value_set  = false;
 		$reflection = new \ReflectionObject( $object );
 		while ( ! empty( $reflection ) ) {
 			try {
 				$property = $reflection->getProperty( $property_name );
 				$property->setAccessible( true );
-				$value = $property->getValue( $object );
+				$value     = $property->getValue( $object );
+				$value_set = true;
 				break;
 			} catch ( \ReflectionException $e ) {
 				// Try again with superclass.
@@ -223,7 +224,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 			}
 		}
 
-		if ( isset( $value ) ) {
+		// To allow for null properties, we cannot use isset().
+		if ( $value_set ) {
 			return $value;
 		}
 
