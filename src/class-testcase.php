@@ -615,4 +615,64 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 			$this->expectException( $class );
 		}
 	}
+
+	/**
+	 * Reports an error identified by $message if $haystack does not contain $needle.
+	 *
+	 * @param mixed  $needle    The needle.
+	 * @param mixed  $haystack  The haystack.
+	 * @param string $message   Optional. Default ''.
+	 */
+	protected function assert_contains( $needle, $haystack, $message = '' ) {
+		if ( \method_exists( $this, 'assertContainsEqual' ) ) {
+			$this->assertContains( $needle, $haystack, $message );
+		} else {
+			$this->assertContains( $needle, $haystack, $message, false, true );
+		}
+	}
+
+	/**
+	 * Reports an error identified by $message if $haystack contains $needle.
+	 *
+	 * @param mixed  $needle    The needle.
+	 * @param mixed  $haystack  The haystack.
+	 * @param string $message   Optional. Default ''.
+	 */
+	protected function assert_not_contains( $needle, $haystack, $message = '' ) {
+		if ( \method_exists( $this, 'assertNotContainsEqual' ) ) {
+			$this->assertNotContains( $needle, $haystack, $message );
+		} else {
+			$this->assertNotContains( $needle, $haystack, $message, false, true );
+		}
+	}
+
+	/**
+	 * Reports an error identified by $message if $haystack does not contain $needle using ==.
+	 *
+	 * @param mixed  $needle    The needle.
+	 * @param mixed  $haystack  The haystack.
+	 * @param string $message   Optional. Default ''.
+	 */
+	protected function assert_contains_equals( $needle, $haystack, $message = '' ) {
+		if ( \method_exists( $this, 'assertContainsEquals' ) ) {
+			$this->assertContainsEquals( $needle, $haystack, $message );
+		} else {
+			$this->assertContains( $needle, $haystack, $message, false, false );
+		}
+	}
+
+	/**
+	 * Reports an error identified by $message if $haystack contains $needle using ==.
+	 *
+	 * @param mixed  $needle    The needle.
+	 * @param mixed  $haystack  The haystack.
+	 * @param string $message   Optional. Default ''.
+	 */
+	protected function assert_not_contains_equals( $needle, $haystack, $message = '' ) {
+		if ( \method_exists( $this, 'asserNotContainsEquals' ) ) {
+			$this->asserNotContainsEquals( $needle, $haystack, $message );
+		} else {
+			$this->assertNotContains( $needle, $haystack, $message, false, false );
+		}
+	}
 }
