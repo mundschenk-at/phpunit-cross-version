@@ -269,6 +269,32 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Reports an error identified by $message if $attribute in $object contains anything other than $data_type.
+	 *
+	 * @param string $data_type      The name of the datatype.
+	 * @param string $attribute      The attribute name.
+	 * @param object $object         The object.
+	 * @param bool   $is_native_type Optional. whether the datatype is a PHP native data type, d or not. Default null.
+	 * @param string $message        Optional. Default ''.
+	 */
+	protected function assert_attribute_contains_only( $data_type, $attribute, $object, $is_native_type = null, $message = '' ) {
+		return $this->assertContainsOnly( $data_type, $this->get_value( $object, $attribute ), $is_native_type, $message );
+	}
+
+	/**
+	 * Reports an error identified by $message if $attribute in $object contains only $data_type.
+	 *
+	 * @param string $data_type      The name of the datatype.
+	 * @param string $attribute      The attribute name.
+	 * @param object $object         The object.
+	 * @param bool   $is_native_type Optional. whether the datatype is a PHP native data type, d or not. Default null.
+	 * @param string $message        Optional. Default ''.
+	 */
+	protected function assert_attribute_contains_not_only( $data_type, $attribute, $object, $is_native_type = null, $message = '' ) {
+		return $this->assertContainsNotOnly( $data_type, $this->get_value( $object, $attribute ), $is_native_type, $message );
+	}
+
+	/**
 	 * Reports an error identified by $message if $attribute in $object is not empty.
 	 *
 	 * @param string $attribute The attribute name.
