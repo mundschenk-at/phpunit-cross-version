@@ -1,0 +1,18 @@
+# Composer
+vendor/
+composer.lock
+
+# Build artifacts
+build/
+
+# Test coverage
+tests/coverage/
+
+# PHPUnit
+.phpunit.result.cache
+
+# macOS
+.DS_Store
+
+# Atom/Serenata
+.serenata

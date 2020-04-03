@@ -1,0 +1,4 @@
+PHPUnit Cross-Version Compatibility
+
+A compatibility baseclass allowing PHPUnit testcases to compatible across PHPUnit
+major releases.

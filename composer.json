@@ -1,0 +1,49 @@
+{
+    "name": "mundschenk-at/phpunit-cross-version",
+    "description": "Compatibility class for cross-version PHPUnit testcases",
+    "type": "library",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Peter Putzer",
+            "email": "github@mundschenk.at",
+            "homepage": "https://code.mundschenk.at",
+            "role": "Developer"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.6.0",
+        "symfony/phpunit-bridge": "^5.0",
+        "brain/monkey": "^2.2",
+        "phpunit/phpunit": "5.*||6.*||7.*||8.*||9.*"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.0",
+        "wp-coding-standards/wpcs": "^2",
+        "phpcompatibility/phpcompatibility-wp": "^2.0",
+        "roave/security-advisories": "dev-master",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.6"
+    },
+
+    "autoload": {
+        "classmap": ["src/"]
+    },
+    "autoload-dev": {
+        "classmap": ["tests/"]
+    },
+
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "phpcs": [
+            "phpcs -p src/ --extensions=php"
+        ],
+        "test": [
+            "phpunit --testsuite PHPUnit_Cross_Version"
+        ],
+        "coverage": [
+            "phpunit --testsuite PHPUnit_Cross_Version --coverage-html tests/coverage"
+        ]
+    }
+}
