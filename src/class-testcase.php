@@ -365,6 +365,30 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Reports an error identified by $message if $attribute in $object is not an instance of $class.
+	 *
+	 * @param string $class     A class name.
+	 * @param string $attribute The attribute name.
+	 * @param object $object    The object.
+	 * @param string $message   Optional. Default ''.
+	 */
+	protected function assert_attribute_instance_of( $class, $attribute, $object, $message = '' ) {
+		return $this->assertInstanceOf( $class, $this->get_value( $object, $attribute ), $message );
+	}
+
+	/**
+	 * Reports an error identified by $message if $attribute in $object is an instance of $class.
+	 *
+	 * @param string $class     A class name.
+	 * @param string $attribute The attribute name.
+	 * @param object $object    The object.
+	 * @param string $message   Optional. Default ''.
+	 */
+	protected function assert_attribute_not_instance_of( $class, $attribute, $object, $message = '' ) {
+		return $this->assertNotInstanceOf( $class, $this->get_value( $object, $attribute ), $message );
+	}
+
+	/**
 	 * Reports an error identified by $message if $actual is not an array.
 	 *
 	 * A custom method is used to future-proof the testcases as assertInternalType()
