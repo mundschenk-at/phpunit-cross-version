@@ -295,6 +295,30 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Reports an error identified by $message if the number of elements in $attribute in $object is not $expected_count.
+	 *
+	 * @param int    $expected_count The expected number of elements.
+	 * @param string $attribute      The attribute name.
+	 * @param object $object         The object.
+	 * @param string $message        Optional. Default ''.
+	 */
+	protected function assert_attribute_count( $expected_count, $attribute, $object, $message = '' ) {
+		return $this->assertCount( $expected_count, $this->get_value( $object, $attribute ), $message );
+	}
+
+	/**
+	 * Reports an error identified by $message if the number of elements in $attribute in $object is $expected_count.
+	 *
+	 * @param int    $expected_count The expected number of elements.
+	 * @param string $attribute      The attribute name.
+	 * @param object $object         The object.
+	 * @param string $message        Optional. Default ''.
+	 */
+	protected function assert_attribute_not_count( $expected_count, $attribute, $object, $message = '' ) {
+		return $this->assertNotCount( $expected_count, $this->get_value( $object, $attribute ), $message );
+	}
+
+	/**
 	 * Reports an error identified by $message if $attribute in $object is not empty.
 	 *
 	 * @param string $attribute The attribute name.
