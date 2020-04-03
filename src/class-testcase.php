@@ -269,6 +269,28 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Reports an error identified by $message if $attribute in $object is not empty.
+	 *
+	 * @param string $attribute The attribute name.
+	 * @param object $object    The object.
+	 * @param string $message   Optional. Default ''.
+	 */
+	protected function assert_attribute_empty( $attribute, $object, $message = '' ) {
+		return $this->assertEmpty( $this->get_value( $object, $attribute ), $message );
+	}
+
+	/**
+	 * Reports an error identified by $message if $attribute in $object is empty.
+	 *
+	 * @param string $attribute The attribute name.
+	 * @param object $object    The object.
+	 * @param string $message   Optional. Default ''.
+	 */
+	protected function assert_attribute_not_empty( $attribute, $object, $message = '' ) {
+		return $this->assertNotEmpty( $this->get_value( $object, $attribute ), $message );
+	}
+
+	/**
 	 * Reports an error identified by $message if $attribute in $object does not have the $key.
 	 *
 	 * @param string $key       The array key.
