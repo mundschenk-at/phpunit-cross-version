@@ -600,4 +600,19 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 			$this->expectException( $class );
 		}
 	}
+
+	/**
+	 * Expectes an warning to be thrown.
+	 *
+	 * @param  string $class The class name of the expected warning.
+	 *
+	 * @return void
+	 */
+	protected function expect_warning( $class ) {
+		if ( \method_exists( $this, 'expectWarning' ) ) {
+			$this->expectWarning( $class );
+		} else {
+			$this->expectException( $class );
+		}
+	}
 }
