@@ -617,6 +617,19 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Expects a certain exception message.
+	 *
+	 * @param  string $regex A regular expression matching the exception message.
+	 */
+	protected function expect_exception_message_matches( $regex ) {
+		if ( \method_exists( $this, 'expectExceptionMessageMatches' ) ) {
+			$this->expectExceptionMessageMatches( $regex );
+		} else {
+			$this->expectExceptionMessageRegExp( $regex );
+		}
+	}
+
+	/**
 	 * Reports an error identified by $message if $haystack does not contain $needle.
 	 *
 	 * @param mixed  $needle    The needle.
