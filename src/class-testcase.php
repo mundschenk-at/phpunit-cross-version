@@ -690,7 +690,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Asserts that the string messages the pattern. This ensures compatibility
+	 * Asserts that the string matches the pattern. This ensures compatibility
 	 * with PHPUnit 10 and higher.
 	 *
 	 * @param  string $pattern A regular expression.
@@ -703,5 +703,21 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 		}
 
 		return $this->assertRegExp( $pattern, $string, $message );
+	}
+
+	/**
+	 * Asserts that the string does not match the pattern. This ensures compatibility
+	 * with PHPUnit 10 and higher.
+	 *
+	 * @param  string $pattern A regular expression.
+	 * @param  string $string  The string.
+	 * @param  string $message Optional. An error message. Default ''.
+	 */
+	protected function assert_does_not_match_regular_expression( $pattern, $string, $message = '' ) {
+		if ( \method_exists( $this, 'assertDoesNotMatchRegularExpression' ) ) {
+			return $this->assertDoesNotMatchRegularExpression( $pattern, $string, $message );
+		}
+
+		return $this->assertNotRegExp( $pattern, $string, $message );
 	}
 }
