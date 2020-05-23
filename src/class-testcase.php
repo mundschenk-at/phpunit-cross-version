@@ -688,4 +688,20 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase {
 			$this->assertNotContains( $needle, $haystack, $message, false, false );
 		}
 	}
+
+	/**
+	 * Asserts that the string messages the pattern. This ensures compatibility
+	 * with PHPUnit 10 and higher.
+	 *
+	 * @param  string $pattern A regular expression.
+	 * @param  string $string  The string.
+	 * @param  string $message Optional. An error message. Default ''.
+	 */
+	protected function assert_matches_regular_expression( $pattern, $string, $message = '' ) {
+		if ( \method_exists( $this, 'assertMatchesRegularExpression' ) ) {
+			return $this->assertMatchesRegularExpression( $pattern, $string, $message );
+		}
+
+		return $this->assertRegExp( $pattern, $string, $message );
+	}
 }
