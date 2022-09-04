@@ -15,7 +15,7 @@
     "require": {
         "php": ">=5.6.0",
         "symfony/phpunit-bridge": "<5.3",
-        "brain/monkey": "^2.2",
+        "brain/monkey": "^2.6",
         "phpunit/phpunit": "5.*||6.*||7.*||8.*||9.*"
     },
     "require-dev": {
@@ -45,5 +45,10 @@
         "coverage": [
             "phpunit --testsuite PHPUnit_Cross_Version --coverage-html tests/coverage"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
