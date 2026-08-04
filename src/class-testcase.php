@@ -70,7 +70,6 @@ abstract class TestCase extends \Yoast\WPTestUtils\BrainMonkey\TestCase {
 		while ( ! empty( $reflection ) ) {
 			try {
 				$method = $reflection->getMethod( $method_name );
-				$method->setAccessible( true );
 				return $method->invokeArgs( $object, $parameters );
 			} catch ( \ReflectionException $e ) {
 				// Try again with superclass.
@@ -93,7 +92,6 @@ abstract class TestCase extends \Yoast\WPTestUtils\BrainMonkey\TestCase {
 	protected function invoke_static_method( $classname, $method_name, array $parameters = [] ) {
 		$reflection = new \ReflectionClass( $classname );
 		$method     = $reflection->getMethod( $method_name );
-		$method->setAccessible( true );
 
 		return $method->invokeArgs( null, $parameters );
 	}
@@ -108,7 +106,6 @@ abstract class TestCase extends \Yoast\WPTestUtils\BrainMonkey\TestCase {
 	protected function set_static_value( $classname, $property_name, $value ) {
 		$reflection = new \ReflectionClass( $classname );
 		$property   = $reflection->getProperty( $property_name );
-		$property->setAccessible( true );
 		$property->setValue( null, $value );
 	}
 
@@ -127,7 +124,6 @@ abstract class TestCase extends \Yoast\WPTestUtils\BrainMonkey\TestCase {
 		while ( ! empty( $reflection ) ) {
 			try {
 				$property = $reflection->getProperty( $property_name );
-				$property->setAccessible( true );
 				$property->setValue( $object, $value );
 				return;
 			} catch ( \ReflectionException $e ) {
@@ -150,7 +146,6 @@ abstract class TestCase extends \Yoast\WPTestUtils\BrainMonkey\TestCase {
 	protected function get_static_value( $classname, $property_name ) {
 		$reflection = new \ReflectionClass( $classname );
 		$property   = $reflection->getProperty( $property_name );
-		$property->setAccessible( true );
 
 		return $property->getValue();
 	}
@@ -171,7 +166,6 @@ abstract class TestCase extends \Yoast\WPTestUtils\BrainMonkey\TestCase {
 		while ( ! empty( $reflection ) ) {
 			try {
 				$property = $reflection->getProperty( $property_name );
-				$property->setAccessible( true );
 				$value     = $property->getValue( $object );
 				$value_set = true;
 				break;
