@@ -2,7 +2,7 @@
 /**
  * This file is part of PHPunit Cross-Version Compatibility.
  *
- * Copyright 2017-2023 Peter Putzer.
+ * Copyright 2017-2026 Peter Putzer.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
