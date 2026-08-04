@@ -11,18 +11,29 @@
 
 	<!-- Include the WordPress ruleset, with exclusions. -->
 	<rule ref="WordPress">
-		<exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
+		<exclude name="WordPress.Security.EscapeOutput.ExceptionNotEscaped" />
 		<exclude name="WordPress.WP.AlternativeFunctions" />
 		<exclude name="WordPress.Arrays.CommaAfterArrayItem.SpaceAfterComma" />
 		<exclude name="Generic.Functions.FunctionCallArgumentSpacing" />
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax" />
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames" />
 	</rule>
 	<rule ref="WordPress-Extra">
 	</rule>
 
 	<rule ref="WordPress.NamingConventions.ValidVariableName">
 		<properties>
-			<property name="customPropertiesWhitelist" type="array" value="nodeValue,parentNode,childNodes,tagName,ownerDocument,nextSibling,previousSibling,firstChild,lastChild" />
+			<property name="allowed_custom_properties" type="array">
+				<element value="nodeValue" />
+				<element value="parentNode" />
+				<element value="childNodes" />
+				<element value="tagName" />
+				<element value="ownerDocument" />
+				<element value="nextSibling" />
+				<element value="previousSibling" />
+				<element value="firstChild" />
+				<element value="lastChild" />
+			</property>
 		</properties>
 	</rule>
 
